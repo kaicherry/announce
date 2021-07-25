@@ -163,19 +163,17 @@ int main(int argc, char *argv[]) {
     (3) Possibly do this in a loop to account for started/stopped services
     */
 
-    if(pidof("uhttpd")) {
-        printf("* uhttpd is running; assuming port 80\n");
-        const char *txt0[] = { "path=/", NULL };
+    
+        printf("* Announcing Pixelcade...\n");
+        const char *txt0[] = { "SuperPixelcade", NULL };
         struct mdns_service *svc0 = mdnsd_register_svc(svr,
                                 readablename,
-                                "_http._tcp.local",
-                                80,
+                                "_pixelcade._tcp.local",
+                                8080,
                                 NULL,
                                 txt0);
         mdns_service_destroy(svc0);
-    } else {
-        printf("- uhttpd is NOT running\n");
-    } 
+   
 
     if(pidof("dropbear")) {
         printf("* dropbear is running; assuming port 22\n");
